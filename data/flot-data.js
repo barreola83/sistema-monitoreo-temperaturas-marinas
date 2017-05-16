@@ -1118,11 +1118,14 @@ $(function() {
 
         if (data.length) {
             data = data.slice(1);
+            console.log("if data.length: " + data);
         }
 
         while (data.length < maximum) {
             var previous = data.length ? data[data.length - 1] : 50;
+            console.log("Previous: " + previous);
             var y = previous + Math.random() * 10 - 5;
+            console.log("Y: " + y);
             data.push(y < 0 ? 0 : y > 100 ? 100 : y);
         }
 
@@ -1131,6 +1134,7 @@ $(function() {
         var res = [];
         for (var i = 0; i < data.length; ++i) {
             res.push([i, data[i]])
+            console.log("res: " + [i, data[i]]);
         }
 
         return res;
@@ -1141,9 +1145,11 @@ $(function() {
     series = [{
         data: getRandomData(),
         lines: {
-            fill: true
+            fill: false
         }
     }];
+
+    console.log("Series: " + series[0].data.toString());
 
     //
 
@@ -1182,7 +1188,7 @@ $(function() {
         },
         yaxis: {
             min: 0,
-            max: 110
+            max: 100
         },
         legend: {
             show: true
@@ -1193,9 +1199,10 @@ $(function() {
 
     setInterval(function updateRandom() {
         series[0].data = getRandomData();
+        console.log("updateRandom: " + series[0].data.toString());
         plot.setData(series);
         plot.draw();
-    }, 40);
+    }, 1000);
 
 });
 

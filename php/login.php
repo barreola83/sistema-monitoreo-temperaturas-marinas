@@ -1,12 +1,11 @@
 <?php
+    require "connection_settings.php";
+    require "sessions.php";
+
     // Iniciamos una nueva sesión para el usuario
     session_start();
 
-    if (isset($_SESSION["email"]))
-    {
-        header("Location: index.html");
-        exit();
-    }
+    if_session_set("email", "index.html");
 
     // Variables para el monitoreo de errores
     $error_email = null;
@@ -23,10 +22,8 @@
         // Si ninguno de los dos campos son vacíos entonces procedemos a verificar al usuario
         if (!$error_email && !$error_password)
         {
-            $connection = new mysqli("localhost", "root", "", "smtm");
-
             // Verificamos si no hubo algun error al conectarse al servidor
-            if (!mysqli_connect_errno())
+            if (!$connection->connect_error)
             {
                 // Obtenemos el correo electrónico y la contraseña
                 $email = mysqli_real_escape_string($connection, $_POST["email"]);
