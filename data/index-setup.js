@@ -22,13 +22,13 @@ var graphOptions =
     },
     yaxis:
     {
-        min: 0,
-        max: 50
+        min: 10,
+        max: 40
     },
     tooltip: true,
     tooltipOpts:
     {
-        content: "%s es %y.2",
+        content: "%y.2 °C",
         shifts:
         {
             x: -60,
@@ -40,8 +40,7 @@ var graphOptions =
 var graphData =
 [
     {
-        data: [],
-        label: "Temperatura (°C)"
+        data: []//, label: "Temperatura (°C)"
     }
 ];
 
@@ -168,7 +167,7 @@ function updateTable(xml)
 function addRow(xml)
 {
     var table = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
-    var row = table.insertRow(table.rows.length);
+    var row = table.insertRow(0);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
